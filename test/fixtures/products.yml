@@ -11,3 +11,10 @@ two:
   description: MyText
   image_url: MyString
   price: 9.99
+
+ruby:
+	title: Programming Ruby 1.9
+	descriptions:
+		Ruby is the fastest growing and most exciting dynamic language out there.
+	price: 49.56
+	image_url: ruby.jpg
