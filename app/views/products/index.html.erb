@@ -13,7 +13,7 @@
         <dt><%= product.title %></dt>
         <dd><%= truncate strip_tags(product.description),
             length:80 %></dd>
-        <%= "Price: #{product.price}" %>
+        <%= "Price: #{number_to_currency(product.price)}" %>
       </dl>
     </td>
 
