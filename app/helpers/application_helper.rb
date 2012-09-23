@@ -3,4 +3,12 @@ module ApplicationHelper
 		Time.now
 	end
 
+	def sess
+		session		
+	end
+
+	def current_cart
+		session[:cart_id]		
+	end
+
 end
