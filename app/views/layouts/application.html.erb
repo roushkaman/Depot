@@ -3,6 +3,7 @@
 <head>
   <title>Online shop</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag "http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
@@ -16,13 +17,15 @@
 		<div id="side">
 			<ul>
 				<li><%= link_to "Home", store_path %></li>
-				<li><%= link_to "Products", products_path %></li>
-				<% if current_cart!=nil %>
-					<li><%= link_to "Моя корзина", cart_path(current_cart) %></li>
-				<%  end  %>
-				
+				<li><%= link_to "Моя корзина", cart_path(current_cart) %></li>
+					<div id="cart">
+						<% if @cart %>
+							<% hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+								<%= render @cart %>
+							<% end %>
+						<% end %>
+					</div>
 			</ul>
-
 			<div id="time"><%= time %></div>
 		</div>
 

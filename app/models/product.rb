@@ -3,7 +3,7 @@ class Product < ActiveRecord::Base
 
   	before_destroy :ensure_not_referenced_by_any_line_item
 
-  	attr_accessible :title, :description, :image_url, :price
+  	attr_accessible :title, :description, :image_url, :price, :date
 
   	validates :title, :length => { maximum: 25, message: "Dlinna ne ta =). Nughno do 25" }, uniqueness: true
   	validates :title, :description, :image_url, presence: true
