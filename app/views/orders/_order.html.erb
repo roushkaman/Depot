@@ -1,0 +1,7 @@
+<%= form_for(@order) do |f| %>
+	<div class="field">
+    	<%= f.label :email, "Заказ отправлен?" %>
+    	<%= f.check_box :ship_date %> 
+    	<%= f.submit "Обновить", confirm: 'Обновить данные?' %>
+  	</div>
+<% end %>

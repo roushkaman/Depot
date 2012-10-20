@@ -3,38 +3,61 @@
 <head>
   <title>Online shop</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= stylesheet_link_tag "http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body class='<%= controller_name %>'>
-	<div id="banner">
-		<%= image_tag("logo.png") %>
-		<%= @page_title || "Online Shop" %>
-	</div>
-
-	<div id="columns">
-		<div id="side">
-			<ul>
-				<li><%= link_to "Home", store_path %></li>
-				<li><%= link_to "Моя корзина", cart_path(current_cart) %></li>
-					<div id="cart">
-						<% if @cart %>
-							<% hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
-								<%= render @cart %>
-							<% end %>
-						<% end %>
-					</div>
-			</ul>
-			<div id="time"><%= time %></div>
-		</div>
-
-		<div id="main">
-			<% if session[:counter] != nil %>
-				<%= pluralize(session[:counter], 'count') %>
-			<% end %>
-			<%= yield %>
-		</div>
-	</div>
+	   	<div class="container">	
+	   		<div class="row">
+    			<div class="span12">
+    					<h2>
+    						<%= image_tag("logo.png", width: '120px') %>
+							<%= @page_title || "Online Shop" %>
+						</h2>
+					    <div class="navbar">
+    						<div class="navbar-inner">
+    							<% if session[:user_id] %>
+    								<li class="brand"><%= link_to 'Выйти', logout_path, method: :delete %></li>
+   									<ul class="nav">
+    									<li type="button"><%= link_to 'Заказы', orders_path %></li>
+    									<li><%= link_to 'Недавние заказы', orders_path(:atom) %></li>
+    								</ul>
+    							<% else %>
+    								<li class="brand"><%= link_to 'Войти', login_path, method: :get %></li>
+    								<ul class="nav">
+    									<li><%= link_to "Моя корзина", cart_path(current_cart) %></li>
+    								</ul>
+    							<% end %>
+    						</div>
+    					</div>
+    				<div class="row">
+    				<div class="span3">
+    					<div id="side">
+							<ul class="nav nav-pills nav-stacked">
+								<li><%= link_to "Каталог товаров", store_path %></li>
+								<div id="cart">
+									<% if @cart %>
+										<% hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+											<%= render @cart %>
+										<% end %>
+									<% end %>
+								</div>
+								<% if session[:user_id] %>		
+										<li><%= link_to 'Товары', products_path %></li>
+										<li><%= link_to 'Пользователи', users_path %></li>
+								<% end %>
+							</ul>
+							<div id="time"><%= time %></div>
+						</div>
+    				</div>
+    				<div class="span9">
+    					<div id="main">
+							<%= yield %>
+						</div>
+    				</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
 </body>
 </html>

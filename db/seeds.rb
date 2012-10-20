@@ -1,3 +1,4 @@
+# coding: utf-8
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -5,11 +6,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Product.delete_all
-Product.create(title: 'Programming Ruby 1.9',
-	description:
-		%{<p>
-			Ruby is vasstes lkmlj and most exstensiving dynamic language out there.
-		</p>},
-		image_url: 'ruby.jpg',
-		price: 67.65)
+Order.delete_all
+LineItem.delete_all
+Cart.delete_all
+PaymentType.delete_all
+PaymentType.create([{ pay_type: 'Оплата чеком' }, { pay_type: 'Пластиковая карта' }, { pay_type: 'Наличный рассчет' }])
+User.create(name: 'admin', password: 'admin', password_confirmation: 'admin')

@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @products = Product.paginate page: params[:page], order: "created_at desc", per_page: 5
 
     respond_to do |format|
       format.html # index.html.erb
@@ -78,6 +78,14 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to products_url }
       format.json { head :no_content }
+    end
+  end
+
+  def who_bought
+    @product = Product.find(params[:id])
+    respond_to do |format|
+        format.html
+        format.atom
     end
   end
 end

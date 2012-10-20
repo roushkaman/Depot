@@ -1,0 +1,9 @@
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+
+<%= render @cart %>
+
+<p><%= button_to 'Оформить заказ', new_order_path, method: :get %></p>
+<p><%= button_to 'Очистить корзину', @cart, method: :delete,
+confirm: 'Вы серьездно?' %></p>

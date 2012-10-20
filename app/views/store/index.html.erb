@@ -1,12 +1,12 @@
 <% if notice %>
-<p id="notice"><%= notice %></p>
+<p class="alert alert-success"><%= notice %></p>
 <% end %>
 
-<h1>Your progmatic Catalog</h1>
+<h1>Каталог товаров</h1>
 
 <% @products.each do |product| %>
 	<div class="entry">
-		<%= image_tag(product.image_url) %>
+		<%= image_tag(product.image_url, class: "img-rounded") %>
 		<h3><%= product.title %></h3>
 		<p><%= sanitize(product.description) %></p>
 		<div class="price_line">
@@ -16,7 +16,7 @@
 		</div>
 	</div>
 <% end %>
-
+<p><%= will_paginate @products %></p>
 
 
 
